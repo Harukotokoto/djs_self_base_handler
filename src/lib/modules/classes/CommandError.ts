@@ -10,17 +10,7 @@ export class CommandError {
 
   public async create(msg: string) {
     await this.message.reply({
-      embeds: [
-        {
-          title: 'エラーが発生しました',
-          description: msg,
-          color: 'RED',
-          footer: client.footer(),
-        },
-      ],
-      allowedMentions: {
-        parse: [],
-      },
+      content: '**エラーが発生しました**\n' + msg.split('\n').join('\n  '),
     });
   }
 }

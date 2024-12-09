@@ -1,11 +1,8 @@
 import {
-  EmbedFooterData,
   Client as DiscordClient,
   ClientEvents,
   ClientOptions,
   Collection,
-  Message,
-  PartialMessage,
 } from 'discord.js-selfbot-v13';
 import { promisify } from 'util';
 import glob from 'glob';
@@ -14,7 +11,6 @@ import { CommandType } from '../interfaces/Command';
 import { Logger } from './classes/Logger';
 import mongoose from 'mongoose';
 import process from 'process';
-import moment from 'moment';
 
 const globPromise = promisify(glob);
 
@@ -29,14 +25,6 @@ export class Client extends DiscordClient {
   public constructor(options?: ClientOptions) {
     super(options);
   }
-
-  public footer = (): EmbedFooterData => {
-    const user = this.users.cache.get('1004365048887660655');
-    return {
-      text: `Produced by ${user?.displayName}`,
-      iconURL: user?.avatarURL() as string,
-    };
-  };
 
   public start(): void {
     this.login(process.env.CLIENT_TOKEN).then(() => {
